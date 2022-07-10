@@ -15,38 +15,20 @@ form.onsubmit = function(e) {
         if (res.status !==200) throw new Error('Location not Found')
         return res.json()
     })
-
-
-    .then(function(weather) {
-        weatherDiv.innerHTML = ""
-        form.inputLocation = ""
-        var h2 = document.createElement('h2')
-        h2.textContent = weather.name.toUpperCase()
-        weatherDiv.appendChild(h2)
-    })
-
-    //should clear input value after searching weather data
+    .then(displayWeather) 
     .catch(function(err){
         weatherDiv.innerHTML = err.message
         cityInput.value = ""
-    })
-}
+    })   
+    }
 
 
-
-   /*.then(displayWeather)
-    .catch(function(err){
-        weatherDiv.innerHTML = err.message
-    })
-}
-
-//should not display "location not found" after entering valid loc
-function displayWeather(weather) {
-    this.weather.value = ""
+function displayWeather(res) {
     weatherDiv.innerHTML = ""
-
-    var h2 = document.createElement('h2')
-    h2.textContent = search.value
-    weatherDiv.appendChild(h2)
     
-*/
+   
+    var city = document.createElement('h2')
+    city.textContent = res.name + "," + res.sys.country
+    weatherDiv.appendChild(city)
+}
+
