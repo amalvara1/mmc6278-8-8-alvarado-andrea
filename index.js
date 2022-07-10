@@ -40,9 +40,13 @@ function displayWeather(weather) {
     weatherDiv.appendChild(mapLink)
 
     //should display condition icon
-
+    var icon = document.createElement('img')
+    iconCode = weather['weather'][0]['icon']
+    icon.src = "https://openweathermap.org/img/wn/" + iconCode + "@2x.png"
+    weatherDiv.appendChild(icon)
 
 
     //should display condition
+
 }
 
