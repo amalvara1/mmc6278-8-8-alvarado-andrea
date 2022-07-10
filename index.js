@@ -1,25 +1,52 @@
 // Your code here
-var URL = 'https://api.openweathermap.org/data/2.5/weather?q=' 
-var key = '&units=imperial&appid=b8654bb0c6ea71c3b1056ab5f5581615'
+var URL = "https://api.openweathermap.org/data/2.5/weather?q="
+var key = "&units=imperial&appid=b8654bb0c6ea71c3b1056ab5f5581615"
 var weatherDiv = document.getElementById('weather')
 var form = document.querySelector('form')
+var cityInput = document.getElementById('weather-search')
 
 
 form.onsubmit = function(e) {
     e.preventDefault()
-    var inputLocation = form.search.value.trim()
+    var inputLocation = cityInput.value
     if (!inputLocation) return
     fetch(URL + inputLocation + key)
     .then(function(res) {
         if (res.status !==200) throw new Error('Location not Found')
         return res.json()
     })
-    .then(showLocation)
+
+
+    .then(function(weather) {
+        weatherDiv.innerHTML = ""
+        form.inputLocation = ""
+        var h2 = document.createElement('h2')
+        h2.textContent = weather.name.toUpperCase()
+        weatherDiv.appendChild(h2)
+    })
+
+    //should clear input value after searching weather data
+    .catch(function(err){
+        weatherDiv.innerHTML = err.message
+        cityInput.value = ""
+    })
+}
+
+
+
+   /*.then(displayWeather)
     .catch(function(err){
         weatherDiv.innerHTML = err.message
     })
 }
 
-function showLocation(weather) {
+//should not display "location not found" after entering valid loc
+function displayWeather(weather) {
+    this.weather.value = ""
+    weatherDiv.innerHTML = ""
+
+    var h2 = document.createElement('h2')
+    h2.textContent = search.value
+    weatherDiv.appendChild(h2)
     
-}
+*/
