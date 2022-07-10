@@ -23,12 +23,26 @@ form.onsubmit = function(e) {
     }
 
 
-function displayWeather(res) {
+function displayWeather(weather) {
     weatherDiv.innerHTML = ""
     
-   
+   //should display city
     var city = document.createElement('h2')
-    city.textContent = res.name + "," + res.sys.country
+    city.textContent = weather.name + "," + weather.sys.country
     weatherDiv.appendChild(city)
+
+    //should display working map link
+    var mapLink = document.createElement('a')
+    mapLink.textContent = 'Click to view map'
+    var lat = weather.coord.lat
+    var lon = weather.coord.lon
+    mapLink.href = "https://www.google.com/maps/search/?api=1&query=" + lat + "," + lon
+    weatherDiv.appendChild(mapLink)
+
+    //should display condition icon
+
+
+
+    //should display condition
 }
 
