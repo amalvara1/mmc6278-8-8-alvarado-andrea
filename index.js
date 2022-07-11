@@ -55,12 +55,19 @@ function displayWeather(weather) {
     var temp = document.createElement('p')
     temp.textContent = "Current: " + weather.main.temp + "\u00B0 F"
     weatherDiv.appendChild(temp)
-    //should display current "feels like" temp
 
+    //should display current "feels like" temp
+    var feelsTemp = document.createElement('p')
+    feelsTemp.textContent = "Feels like: " + weather.main.feels_like + "\u00B0 F"
+    weatherDiv.appendChild(feelsTemp)
 
 
     //should display updated time
-
+    var date = new Date(weather.dt * 1000)
+    var timeString = date.toLocaleTimeString('en-US', {
+    hour: 'numeric',
+    minute: '2-digit'
+    })
 
 
     //should not display previous locations weather info after 
