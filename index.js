@@ -47,6 +47,22 @@ function displayWeather(weather) {
 
 
     //should display condition
+    var condition = document.createElement('p')
+    condition.textContent = weather['weather'][0]['description']
+    weatherDiv.appendChild(condition)
 
+    //should display current temp
+    var temp = document.createElement('p')
+    temp.textContent = "Current: " + weather.main.temp + "\u00B0 F"
+    weatherDiv.appendChild(temp)
+    //should display current "feels like" temp
+
+
+
+    //should display updated time
+
+
+
+    //should not display previous locations weather info after 
 }
 
